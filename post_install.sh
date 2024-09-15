@@ -97,59 +97,53 @@ install_thunderbird() {
 }
 
 install_pass() {
-  echo "Instalando pass..."
+  echo "Installing PASS..."
   sudo apt install pass -y
 }
 
+
+install_snap () {
+  echo "Installing SNAP..."
+  sudo apt install snapd
+}
+
+install_pipx () {
+  echo "Installing PIPX..."
+  sudo apt install pipx
+}
+
+
+### Install snap
+install_snap
 ### Instala Git
 install_git
-
-
 ### Instala curl
 install_curl
-
-
 ### Instala neovim
 install_neovim
-
-
 ### Instala docker + docker-compose
 install_docker
 ### Configura grupo docker
 configure_docker_group
 #TODO review this level permission for snap installation
-add_extra_docker_permission
-
+#add_extra_docker_permission
 ### INSTALA DBEAVER
 install_dbeaver
-
 ### INSTALA PYENV (client para ...)
-install_pyenv_dependencies
-install_pyenv
-configure_pyenv
-
-
+#install_pyenv_dependencies
+#install_pyenv
+#configure_pyenv
 # INSTALA ASDF
-install_asdf
-configure_asdf
-
-
+#install_asdf
+#configure_asdf
 ### INSTALA VSCODE 
 install_vscode
-
-
 ### INSTALA FLATPAK
 install_flatpak
 configure_flatpak
-
-
 ### INSTALA PASS
 install_pass
-
-
 ### INSTALA SLACK
 #install_slack
-
-
 ### INSTALA THUNDERBIRD
-#install_thunderbird
+install_thunderbird
