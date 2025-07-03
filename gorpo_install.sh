@@ -9,6 +9,9 @@ if [[ "$os" == "debian" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     echo "Installing Ubuntu packages..."
     source ./ubuntu.sh
+elif [[ "$os" == "fedora" ]]; then
+    echo "Installing Fedora packages..."
+    source ./fedora.sh
 else
     echo "Unknown OS..."
 fi
