@@ -6,4 +6,5 @@ Use the *Gorpo* CLI to install and configure packages
 - [x] Debian 12
 - [x] Ubuntu 24.04
 - [x] Ubuntu 22.04
+- [x] Fedora 42
 

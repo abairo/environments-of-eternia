@@ -1,5 +1,7 @@
 ﻿#!/bin/bash
 
+source ./functions.sh
+
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 install_git () {
@@ -21,14 +23,6 @@ install_docker () {
   echo "Installing docker + docker-compose..."
   sudo snap install docker
 }
-
-configure_docker_group () {
-  echo "Add grupo docker..."
-  sudo groupadd docker
-  echo "Add user $($USER) to the docker group..."
-  sudo usermod -aG docker $USER
-}
-
 
 install_dbeaver () {
   echo "Installing dbeaver..."
