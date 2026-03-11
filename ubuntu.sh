@@ -1,6 +1,7 @@
 ﻿#!/bin/bash
 
 source ./functions.sh
+source ./debian/antigravity.sh
 
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
@@ -175,3 +176,5 @@ install_spotify
 install_htop
 ### INSTALL SURFSHARK
 install_surfshark
+### INSTALL ANTIGRAVITY
+install_antigravity
