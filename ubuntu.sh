@@ -105,7 +105,6 @@ install_pass() {
   sudo apt install pass -y
 }
 
-
 install_snap () {
   echo "Installing SNAP..."
   sudo apt install snapd

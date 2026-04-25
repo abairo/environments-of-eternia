@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ./functions.sh
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 install_htop () {
@@ -10,15 +10,6 @@ install_htop () {
 install_docker () {
   echo "instalando docker..."
   sudo zypper --no-confirm install docker
-}
-
-
-configure_docker () {
-  echo "Configurando docker..."
-  sudo systemctl enable docker
-  sudo systemctl start docker
-  sudo usermod -aG docker "$SUDO_USER"
-  newgrp docker
 }
 
 
@@ -48,8 +39,14 @@ install_asdf () {
 }
 
 install_asdf_nodejs_plugin_dependency () {
-  echo "Instalando libatomic1 (asdf nodejs plugin dependência)"
+  echo "Installing libatomic1 (asdf nodejs plugin dependency)"
   sudo zypper --non-interactive install libatomic1
+}
+
+install_nodejs_lts_asdf () {
+  echo "Installing nodejs LTS via asdf..."
+  asdf install nodejs latest
+  asdf set -u nodejs lts
 }
 
 install_asdf_nodejs_plugin () {
@@ -101,31 +98,10 @@ install_gimp() {
   sudo zypper --non-interactive install gimp
 }
 
-install_opencode () {
-  echo "Instalando OpenCode..."
-  curl -fsSL https://opencode.ai/install | bash
-}
-
-configure_opencode () {
-  echo "Configurando opencode..."
-  echo "# OPENCODE" >> ~/.bashrc
-  echo "export PATH=$HOME/.opencode/bin:$PATH" >> ~/.bashrc
-}
-
 configure_asdf () {
   echo "Configurando asdf..."
   echo "# ASDF" >> ~/.bashrc
   echo ". ${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" >> ~/.bashrc
-}
-
-install_codex_cli () {
-  echo "Instalando Codex CLI..."
-  npm i -g @openai/codex
-}
-
-install_gemini_cli () {
-  echo "Instalando Gemini CLI..."
-  npm install -g @google/gemini-cli
 }
 
 install_vscode () {
@@ -145,8 +121,13 @@ configure_asdf
 install_asdf_python_dependencies
 install_neovim
 install_pass-store
-install_opencode
-configure_opencode
+# AI CLIs
 install_codex_cli
 install_gemini_cli
+install_opencode
+configure_opencode
+# CODE EDITORS
 install_vscode
+# DOCKER
+install_docker
+configure_docker_group
