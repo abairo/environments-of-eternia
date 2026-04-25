@@ -6,9 +6,9 @@ print_installing_message() {
 }
 
 configure_docker_group () {
-  echo "Add grupo docker..."
+  echo "Adding docker group..."
   sudo groupadd docker
-  echo "Add user $($USER) to the docker group..."
+  echo "Adding user $USER to the docker group..."
   sudo systemctl enable docker
   sudo systemctl start docker
   sudo usermod -aG docker $USER
@@ -16,22 +16,22 @@ configure_docker_group () {
 }
 
 install_codex_cli () {
-  echo "Instalando Codex CLI..."
+  echo "Installing Codex CLI..."
   npm install -g @openai/codex
 }
 
 install_gemini_cli () {
-  echo "Instalando Gemini CLI..."
+  echo "Installing Gemini CLI..."
   npm install -g @google/gemini-cli
 }
 
 install_opencode () {
-  echo "Instalando OpenCode..."
+  echo "Installing OpenCode..."
   curl -fsSL https://opencode.ai/install | bash
 }
 
 configure_opencode () {
-  echo "Configurando opencode..."
+  echo "Configuring OpenCode..."
   echo "# OPENCODE" >> ~/.bashrc
   echo "export PATH=$HOME/.opencode/bin:$PATH" >> ~/.bashrc
 }

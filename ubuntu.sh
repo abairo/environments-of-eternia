@@ -91,7 +91,7 @@ install_flatpak () {
 }
 
 configure_flatpak () {
-  echo "Configurando flatpak..."
+  echo "Configuring flatpak..."
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 

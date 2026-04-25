@@ -3,38 +3,38 @@ source ./functions.sh
 USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
 
 install_htop () {
-  echo "Instalando htop..."
+  echo "Installing htop..."
   sudo zypper --no-confirm install htop
 }
 
 install_docker () {
-  echo "instalando docker..."
+  echo "Installing docker..."
   sudo zypper --no-confirm install docker
 }
 
 
 install_docker_compose () {
-  echo "instalando docker-compose..."
+  echo "Installing docker-compose..."
   sudo zypper --no-confirm install docker-compose
 }
 
 install_pyenv () {
-  echo "instalando pyenv..."
+  echo "Installing pyenv..."
   sudo zypper --non-interactive install pyenv
 }
 
 install_curl () {
-  echo "instalando curl..."
+  echo "Installing curl..."
   sudo zypper --non-interactive install curl
 }
 
 install_git () {
-  echo "instalando git..."
+  echo "Installing git..."
   sudo zypper --non-interactive install git 
 }
 
 install_asdf () {
-  echo "Instalando asdf..."
+  echo "Installing asdf..."
   sudo zypper --non-interactive install asdf
 }
 
@@ -50,12 +50,12 @@ install_nodejs_lts_asdf () {
 }
 
 install_asdf_nodejs_plugin () {
-  echo "Instalando nodejs asdf plugin..."
+  echo "Installing Node.js ASDF plugin..."
   asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 }
 
 install_asdf_python_plugin () {
-  echo "Instalando python asdf plugin..."
+  echo "Installing Python ASDF plugin..."
   asdf plugin add python https://github.com/danhper/asdf-python.git
 }
 
@@ -66,7 +66,7 @@ set enable-bracketed-paste off' > ~/.inputrc
 }
 
 install_asdf_python_dependencies () {
-  echo "Instalando dependências para instalar versões python através do asdf python plugin..."
+  echo "Installing dependencies required by the ASDF Python plugin..."
   sudo zypper --non-interactive install \
   gcc make patch tar xz gzip bzip2 \
   libopenssl-devel readline-devel zlib-devel libffi-devel \
@@ -79,33 +79,33 @@ install_neovim () {
 }
 
 install_cargo () {
-  echo "Instalando cargo..."
+  echo "Installing cargo..."
   sudo zypper --non-interactive install cargo
 }
 
 install_lunar_vim_dependencies () {
-  echo "Instalando lunar vim dependencies..."
+  echo "Installing LunarVim dependencies..."
   sudo zypper --non-interactive install pattern devel_basis
 }
 
 install_pass_store() {
-  echo "Instalando pass-store..."
+  echo "Installing pass-store..."
   sudo zypper --non-interactive install password-store
 }
 
 install_gimp() {
-  echo "Instalando gimp..."
+  echo "Installing gimp..."
   sudo zypper --non-interactive install gimp
 }
 
 configure_asdf () {
-  echo "Configurando asdf..."
+  echo "Configuring ASDF..."
   echo "# ASDF" >> ~/.bashrc
   echo ". ${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" >> ~/.bashrc
 }
 
 install_vscode () {
-  echo "Instalando vscode..."
+  echo "Installing VS Code..."
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
   sudo zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
   sudo zypper refresh
