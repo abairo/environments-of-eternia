@@ -83,6 +83,58 @@ configure_asdf () {
   echo ". ${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" >> ~/.bashrc
 }
 
+install_direnv() {
+  echo "Installing direnv..."
+  sudo zypper --non-interactive install direnv
+}
+
+install_strawberry() {
+  echo "Installing strawberry..."
+  sudo zypper --non-interactive install strawberry
+}
+
+install_fd() {
+  echo "Installing fd..."
+  sudo zypper --non-interactive install fd
+}
+
+install_ripgrep() {
+  echo "Installing ripgrep..."
+  sudo zypper --non-interactive install ripgrep
+}
+
+install_compsize() {
+  echo "Installing compsize..."
+  sudo zypper --non-interactive install compsize
+}
+
+install_fish() {
+  echo "Installing fish..."
+  sudo zypper --non-interactive install fish
+}
+
+install_mkvtoolnix() {
+  echo "Installing mkvtoolnix..."
+  sudo zypper --non-interactive install mkvtoolnix
+}
+
+install_ffmpeg() {
+  echo "Installing ffmpeg and configuring packman..."
+  sudo zypper addrepo -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
+  sudo zypper refresh
+  sudo zypper --non-interactive dup --from packman --allow-vendor-change
+  sudo zypper --non-interactive install ffmpeg
+}
+
+install_podman() {
+  echo "Installing podman..."
+  sudo zypper --non-interactive install podman
+}
+
+install_mediainfo() {
+  echo "Installing mediainfo..."
+  sudo zypper --non-interactive install mediainfo
+}
 
 install_discord() {
   echo "Installing Discord..."
@@ -123,3 +175,15 @@ install_docker
 configure_docker_group
 # DISCORD
 install_discord
+
+# ADDITIONAL TOOLS
+install_direnv
+install_strawberry
+install_fd
+install_ripgrep
+install_compsize
+install_fish
+install_mkvtoolnix
+install_ffmpeg
+install_podman
+install_mediainfo
