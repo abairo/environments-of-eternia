@@ -105,6 +105,11 @@ install_pass() {
   sudo apt install pass -y
 }
 
+install_discord () {
+  echo "Installing Discord..."
+  sudo snap install discord --classic
+}
+
 install_snap () {
   echo "Installing SNAP..."
   sudo apt install snapd

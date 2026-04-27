@@ -12,17 +12,6 @@ install_docker () {
   sudo zypper --no-confirm install docker
 }
 
-
-install_docker_compose () {
-  echo "Installing docker-compose..."
-  sudo zypper --no-confirm install docker-compose
-}
-
-install_pyenv () {
-  echo "Installing pyenv..."
-  sudo zypper --non-interactive install pyenv
-}
-
 install_curl () {
   echo "Installing curl..."
   sudo zypper --non-interactive install curl
@@ -78,16 +67,6 @@ install_neovim () {
   sudo zypper --non-interactive install neovim
 }
 
-install_cargo () {
-  echo "Installing cargo..."
-  sudo zypper --non-interactive install cargo
-}
-
-install_lunar_vim_dependencies () {
-  echo "Installing LunarVim dependencies..."
-  sudo zypper --non-interactive install pattern devel_basis
-}
-
 install_pass_store() {
   echo "Installing pass-store..."
   sudo zypper --non-interactive install password-store
@@ -104,6 +83,13 @@ configure_asdf () {
   echo ". ${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" >> ~/.bashrc
 }
 
+
+install_discord() {
+  echo "Installing Discord..."
+  sudo zypper --non-interactive install discord
+}
+
+
 install_vscode () {
   echo "Installing VS Code..."
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -112,15 +98,19 @@ install_vscode () {
   sudo zypper --non-interactive install code
 }
 
-configure_input_history
-install_pyenv
+install_htop
 install_curl
 install_git
+install_gimp
 install_asdf
 configure_asdf
 install_asdf_python_dependencies
+install_asdf_nodejs_plugin_dependency
+install_asdf_python_plugin
+install_asdf_nodejs_plugin
+install_nodejs_lts_asdf
 install_neovim
-install_pass-store
+install_pass_store
 # AI CLIs
 install_codex_cli
 install_gemini_cli
@@ -131,3 +121,5 @@ install_vscode
 # DOCKER
 install_docker
 configure_docker_group
+# DISCORD
+install_discord
