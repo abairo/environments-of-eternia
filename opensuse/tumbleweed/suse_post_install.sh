@@ -8,8 +8,8 @@ install_htop () {
 }
 
 install_docker () {
-  echo "Installing docker..."
-  sudo zypper --no-confirm install docker
+  echo "Installing docker and docker-compose..."
+  sudo zypper --non-interactive install docker docker-compose docker-compose-switch
 }
 
 install_curl () {
@@ -118,6 +118,18 @@ install_mkvtoolnix() {
   sudo zypper --non-interactive install mkvtoolnix
 }
 
+install_stow() {
+  echo "Installing stow..."
+  sudo zypper --non-interactive install stow
+}
+
+install_starship() {
+  echo "Installing starship..."
+  sudo zypper --non-interactive install starship
+}
+
+
+
 install_ffmpeg() {
   echo "Installing ffmpeg and configuring packman..."
   sudo zypper addrepo -cfp 90 https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/ packman
@@ -141,6 +153,17 @@ install_discord() {
   sudo zypper --non-interactive install discord
 }
 
+install_flatpak() {
+  echo "Installing flatpak..."
+  sudo zypper --non-interactive install flatpak
+}
+
+configure_flatpak() {
+  echo "Configuring flatpak..."
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+}
+
+
 
 install_vscode () {
   echo "Installing VS Code..."
@@ -149,6 +172,37 @@ install_vscode () {
   sudo zypper refresh
   sudo zypper --non-interactive install code
 }
+
+install_virt () {
+  echo "Installing virtualization tools..."
+  sudo zypper --non-interactive install qemu-kvm libvirt virt-manager
+  echo "Configuring virtualization..."
+  sudo usermod -aG libvirt $USER
+  sudo systemctl enable --now libvirtd
+}
+
+install_flutter_dart () {
+  echo "Installing Flutter/Dart..."
+  sudo zypper --non-interactive install wget tar xz
+  mkdir -p "$USER_HOME/development"
+  (
+    cd "$USER_HOME/development" || exit 1
+    wget -c https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.44.0-stable.tar.xz
+    tar -xf flutter_linux_3.44.0-stable.tar.xz
+  )
+  if [ -n "$SUDO_USER" ]; then
+    chown -R "$SUDO_USER:" "$USER_HOME/development"
+  fi
+}
+
+install_android_studio () {
+  echo "Installing Android Studio..."
+  sudo zypper --non-interactive install wget tar gzip libgtk-3-0 libgthread-2_0-0
+  wget -c https://edgedl.me.gvt1.com/android/studio/ide-zips/2025.3.4.7/android-studio-panda4-patch1-linux.tar.gz -P /tmp
+  sudo tar -xf /tmp/android-studio-panda4-patch1-linux.tar.gz -C /opt/
+  rm -f /tmp/android-studio-panda4-patch1-linux.tar.gz
+}
+
 
 install_htop
 install_curl
@@ -175,6 +229,9 @@ install_docker
 configure_docker_group
 # DISCORD
 install_discord
+# FLATPAK
+install_flatpak
+configure_flatpak
 
 # ADDITIONAL TOOLS
 install_direnv
@@ -184,6 +241,12 @@ install_ripgrep
 install_compsize
 install_fish
 install_mkvtoolnix
+install_stow
+install_starship
 install_ffmpeg
 install_podman
 install_mediainfo
+install_uv
+install_virt
+install_flutter_dart
+install_android_studio

@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 source ./functions.sh
 source ./debian/antigravity.sh
@@ -182,3 +182,5 @@ install_htop
 install_surfshark
 ### INSTALL ANTIGRAVITY
 install_antigravity
+### INSTALL UV
+install_uv

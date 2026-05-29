@@ -50,10 +50,16 @@ install_and_configure_docker () {
   enable_docker
 }
 
+install_uv () {
+  print_installing_message "uv"
+  sudo dnf install uv -y
+}
+
 install_snapd
 enable_classic_snap_support
 install_git
 install_neovim
+install_uv
 install_pass
 install_and_configure_docker
 snap_install_curl
@@ -69,3 +75,4 @@ snap_install_multipass
 flatpak_configure_flatpak_remote
 flatpak_install_steam
 flatpak_install_heroic_games
+install_uv

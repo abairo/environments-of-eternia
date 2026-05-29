@@ -35,3 +35,8 @@ configure_opencode () {
   echo "# OPENCODE" >> ~/.bashrc
   echo "export PATH=$HOME/.opencode/bin:$PATH" >> ~/.bashrc
 }
+
+install_uv () {
+  print_installing_message "uv"
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+}
